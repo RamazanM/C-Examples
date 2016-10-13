@@ -7,7 +7,6 @@ sayı girişini sonlandırmak için "-0" değeri verilmelidir.
 int main() {
   int sayilar[100];
   int sayac=0,devam=1;
-  int tick=251;
   printf("Sayıları giriniz...\n" );
   while (devam) {
     scanf("%d",&sayilar[sayac]);
