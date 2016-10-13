@@ -1,3 +1,10 @@
+/*
+Bu uygulamada bilgisayarın rastgele ürettiği iki sayı ile
+rastgele seçtiği bir operatörü kullanarak çeşitli matematiksel işlemlerin sonucunu kullanıcıdan istedim.
+Kullanıcı yanlış cevap verene kadar yeni soru ürettim.
+Yanlış cevap geldiğinde kaç saniyede kaç doğru cevap verdiğini gösterdim.
+Ramazan Mutlu
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
