@@ -6,9 +6,12 @@ Klasik adam asmaca oyununun konsol versiyonu.
 #include <string.h>
 #include <termios.h>
 #include <unistd.h>
+#include <locale.h>
 char *randomSatir(char *dosyaAdi);
 //Prototip tanımlama gerekli!!!
 int main(int argc, char const *argv[]) {
+  char *locale;
+  locale = setlocale(LC_ALL, "");
 
   int tryAgain=1;
   char answer;
