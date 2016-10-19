@@ -1,31 +1,34 @@
-//Bir sayının karekökü nasıl hesaplanır 
+//Girilen sayının karekökünü hesaplayan program/fonksiyon
 #include<stdio.h>
+float karekok(float sayi);
+
 int main (){
-	float sayi=12,kok=1;
+	int sayi=0;
+	while(1){
+	printf("Karekökünü almak istediğiniz sayıyı giriniz:");
+	scanf("%d",&sayi);
+	printf("%d'nin karekökü: %f\n",sayi, karekok(sayi));
+}
+	return 0;
+}
+
+float karekok(float sayi){
+	float kok=1;
 	int sayac=0;
 	float katsayi=100;
 	int devam=1;
-
+	int sigorta=0;
 	while(devam){
-  	 if(katsayi==1/100){
-				devam=0;
-				printf("kok:%f",kok);
-				}
 		
-		if(kok*kok<sayi) {
-			kok+=katsayi;
-			}
+		if(sigorta==250) devam=0;
+		if(kok*kok<sayi) kok+=katsayi;
 		if(kok*kok>sayi){
 			kok-=katsayi;
 			katsayi=katsayi/10;
-		
 		}
-		if(sayi==kok*kok){
-			devam=0;
-			printf("%f'nin karekökü: %f",sayi,kok);
-			}
+		if(sayi==kok*kok) devam=0;
+			sigorta++;
 
-		}
-	
-	return 0;
+	}
+	return kok;
 }
