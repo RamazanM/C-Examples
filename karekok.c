@@ -13,22 +13,23 @@ int main (){
 }
 
 float karekok(float sayi){
-	float kok=1;
-	int sayac=0;
-	float katsayi=100;
-	int devam=1;
-	int sigorta=0;
+
+	float kok=1,katsayi=100;
+	int devam=1,sigorta=0;
+
 	while(devam){
-		
+
 		if(sigorta==250) devam=0;
 		if(kok*kok<sayi) kok+=katsayi;
+
 		if(kok*kok>sayi){
 			kok-=katsayi;
 			katsayi=katsayi/10;
 		}
-		if(sayi==kok*kok) devam=0;
-			sigorta++;
 
+		if(sayi==kok*kok) devam=0;
+
+		sigorta++;
 	}
 	return kok;
 }
