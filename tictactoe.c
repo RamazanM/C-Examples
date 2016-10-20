@@ -67,6 +67,8 @@ int * available_patterns(){
     }
 return available_pattern_ids;
 }
-check_empty_fields(int pattern_id){
-  
+int *check_empty_fields(int pattern_id){
+  //koordinatları döndür
 }
+int random  (int *patternOrField){}
+void write (int *coordinate, int sign){}
