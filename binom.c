@@ -9,7 +9,9 @@
 void binom(int n);
 int fact(int a);
 int combination(int a, int b);
+
 #include <stdio.h>
+
 int main(int argc, char const *argv[]) {
   int i=1;
   for (i; i < 10; i++) {
