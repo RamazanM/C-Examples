@@ -60,15 +60,19 @@ int * available_patterns(){
       x=patterns[p_index][f_index][_X];
       y=patterns[p_index][f_index][_Y];
       if(content[y][x]!=player_choose) field_counter++;
-      //printf("%d\n",field_counter);
     }
     if(field_counter==3){available_pattern_ids[ap_counter]=p_index; ap_counter++;}
     else printf("Desen Uygun Değil\n");
     }
 return available_pattern_ids;
 }
+int check_thread_coords(){
+  //2 tane player_choose aynı patternde ise tehtid olarak algıla ve 3. boşluğun koordinatını yazdır.
+}
 int *check_empty_fields(int pattern_id){
-  //koordinatları döndür
+  //bir patterndeki boş yerleri bulur.
 }
 int random  (int *patternOrField){}
-void write (int *coordinate, int sign){}
+void write (int *coordinate, int sign){
+  //verilen koordinata verilen işareti yazar.
+}

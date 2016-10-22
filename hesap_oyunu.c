@@ -8,6 +8,7 @@ Ramazan Mutlu
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
 int main() {
   int devam=1,dogru=0;
   time_t start,end;

@@ -6,30 +6,38 @@
 (a + b)4 = 1.a4 + 4.a3.b + 6.a2.b2 + 4.a.b3 +1.b4
 (a + b)5 = 1.a5 + 5.a4.b +10.a3.b2 +10.a2.b3 + 5.a.b4 +1.b5
 */
+
+//Prototip tanımlamaları...
 void binom(int n);
 int fact(int a);
 int combination(int a, int b);
+//Prototip tanımlamaları...^
 #include <stdio.h>
-int main(int argc, char const *argv[]) {
+
+int main() {
+  //10.Dereceye kadar binom açılımlarını yazdır.
   int i=1;
   for (i; i < 10; i++) {
-    printf("%d.) ",i );
+    printf("%d.) ",i);
     binom(i);
     printf("\n");
   }
   return 0;
 }
 int fact(int a){
+  //Faktöriyel fonksiyonu -> a!
   int sonuc=1;
   for(a;a>0;a--) sonuc=sonuc*a;
   return sonuc;
 }
 int combination(int a, int b){
+  //Kombinasyon fonksiyonu -> (a!)/(b!)(a-b)!
   int fark=a-b;
   int sonuc=fact(a)/(fact(b)*fact(a-b));
   return sonuc;
 }
 void binom(int n){
+  //n.dereceden binom açılımı fonksiyonu -> (a+b)^n
   int k=0;
   for(k=0;k<=n;k++){
     if(combination(n,k)!=1)printf("%d",combination(n,k) );
