@@ -11,7 +11,7 @@
 void binom(int n);
 int fact(int a);
 int combination(int a, int b);
-<<<<<<< HEAD
+
 //Prototip tanımlamaları...^
 #include <stdio.h>
 
@@ -21,8 +21,7 @@ int main() {
 
 #include <stdio.h>
 
-int main(int argc, char const *argv[]) {
->>>>>>> baa4f307d77b9cc78bec008d5d75ef11dd600653
+int main() {
   int i=1;
   for (i; i < 10; i++) {
     printf("%d.) ",i);
