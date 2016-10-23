@@ -1,15 +1,11 @@
 #include <stdio.h>
 int main (){
-	int taban,sayi,sayac=0;
+	int taban,sayi,i=1;
 	printf ("Taban:");
 	scanf ("%d",&taban);
 	printf ("Sayi:");
 	scanf ("%d",&sayi);
-	int i=1;
-	while (1){
-		if (sayi!=power (taban,i))i++;
-		else break;
-	}
+	while (sayi!=power(taban,i)) i++;
 	printf ("log%d tabanında %d = %d",taban,sayi,i);
 }
 int power (int a, int b){
