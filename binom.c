@@ -15,9 +15,9 @@ int combination(int a, int b);
 //Prototip tanımlamaları...^
 #include <stdio.h>
 
-int main() {
+
   //10.Dereceye kadar binom açılımlarını yazdır.
-=======
+
 
 #include <stdio.h>
 
