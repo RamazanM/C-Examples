@@ -9,6 +9,7 @@
 #define MAX_F 3
 int player_choose=GAME_X;
 int computer_choose=GAME_O;
+//Prototip Tanımlamaları
 int *available_patterns();
 int write (int,int,int);
 void print_content(int content[3][3]);
@@ -18,14 +19,13 @@ int is_available(int,int);
 void ready_write();
 void write_random();
 int rastgele(int max);
-
+//Prototip Tanımlamaları
 struct game {
 	int count_x;
 	int count_o;
 	int player_choose;
 	int computer_choose;
 }game;
-
 struct thread{
   int pattern_id;
   int x;
@@ -47,6 +47,7 @@ int content[3][3]={
   {-1,-1,-1} };
 
 int main(){
+	print_content(content);
   while(!gameover()){
   int x,y;
   printf("Format x,y\n");
@@ -54,8 +55,16 @@ int main(){
   write(x,y,player_choose);
   print_content(content);
   check_thread();
-  if(thread.pattern_id!=-1) write(thread.x,thread.y,GAME_O);
-  else write_random();
+  if(thread.pattern_id!=-1) {
+		write(thread.x,thread.y,GAME_O);
+		thread.pattern_id=-1;
+		thread.x=-1;
+		thread.y=-1;
+	}
+  else {
+		write_random();
+		printf("Random Yazıldı\n");
+	}
   print_content(content);
 }
   int* deneme=available_patterns();
@@ -84,7 +93,7 @@ int * available_patterns(){
 }
 void check_thread(){
     int p_index,f_index;
-    int thread_pattern_id=-1;  //static koymayı unutma!!
+    int thread_pattern_id=-1;
     int tp_counter=0;
     int x=-1,y=-1;
     for(p_index=0; p_index<MAX_P; p_index++){
@@ -92,7 +101,9 @@ void check_thread(){
       for(f_index=0; f_index<MAX_F; f_index++){
         x=patterns[p_index][f_index][_X];
         y=patterns[p_index][f_index][_Y];
-        if(content[y][x]==player_choose) field_counter++;
+				if(content[y][x]==player_choose) field_counter++;
+				if(content[y][x]==computer_choose) field_counter=-1;
+
       }
       if(field_counter==2){thread_pattern_id=p_index; tp_counter++;}
       }
@@ -126,7 +137,7 @@ void print_content(int content[3][3]){
     for(j=0;j<3;j++){
       if(content[i][j]==GAME_X)printf("| %c ",'X' );
       if(content[i][j]==GAME_O)printf("| %c ",'O' );
-      else printf("| %c ",' ' );
+			if(content[i][j]==-1)printf("| %c ",' ' );
     }
     printf("\n");
   }
@@ -147,6 +158,7 @@ void check_empty_fields(){
       thread.y=x;
     }
   }
+	printf("Tehtid id:%d\tX:%d\tY:%d\n",pattern_id,thread.x,thread.y );
 }
 int rastgele(int max){
   srand(time(NULL));
@@ -163,15 +175,21 @@ int gameover(){
   int p_index,f_index;
   int pattern_counter=0;
   int x=0,y=0;
+	int player_counter=0;
+	int computer_counter=0;
   for(p_index=0; p_index<MAX_P; p_index++){
-    int field_counter=0;
+		int player_counter=0;
+		int computer_counter=0;
     for(f_index=0; f_index<MAX_F; f_index++){
       x=patterns[p_index][f_index][_X];
       y=patterns[p_index][f_index][_Y];
-      if(content[y][x]!=-1) field_counter++;
+			if(content[y][x]==player_choose) player_counter++;
+			if(content[y][x]==computer_choose) computer_counter++;
+    	}
+    if(player_counter==3){printf("Kazandınız\n");}
+		if(computer_counter==3){printf("Kaybettin\n");}
     }
-      if(field_counter==3){pattern_counter++;}
-    }
-    if(pattern_counter==7)return 1;
+    if(pattern_counter==7){return 1;
+		printf("Game OVER\n");}
     else return 0;
   }
