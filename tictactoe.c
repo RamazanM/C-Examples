@@ -19,11 +19,19 @@ void ready_write();
 void write_random();
 int rastgele(int max);
 
+struct game {
+	int count_x;
+	int count_o;
+	int player_choose;
+	int computer_choose;
+}game;
+
 struct thread{
   int pattern_id;
   int x;
   int y;
 } thread;
+
 int patterns[8][3][2]={
   {{0,0},{0,1},{0,2}},
   {{1,0},{1,1},{1,2}},
