@@ -1,3 +1,9 @@
+/*
+Tehtid-thread: 2 tane kullanıcı işaretinin aynı desen içerisinde bulunmasıdır.
+Desen-pattern: xox oyununda oyuncunun kazanması için işaretleri koyması gereken düzen topluluğu.
+
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -19,10 +25,11 @@ int is_available(int,int);
 void ready_write();
 void write_random();
 int rastgele(int max);
+void setup();
 //Prototip Tanımlamaları
 struct game {
-	int count_x;
-	int count_o;
+	int count_player;
+	int count_computer;
 	int player_choose;
 	int computer_choose;
 }game;
@@ -47,32 +54,37 @@ int content[3][3]={
   {-1,-1,-1} };
 
 int main(){
-	print_content(content);
-  while(!gameover()){
+	setup();//İlk ayarlar...
+  while(!gameover()){//Oyun hala bitmediyse->
   int x,y;
-  printf("Format x,y\n");
-  scanf("%d,%d",&x,&y);
-  write(x,y,player_choose);
-  print_content(content);
-  check_thread();
-  if(thread.pattern_id!=-1) {
-		write(thread.x,thread.y,GAME_O);
-		thread.pattern_id=-1;
-		thread.x=-1;
-		thread.y=-1;
+  printf("Format x,y:");//Sayının girilmesi gereken format x,y şeklinde.
+  scanf("%d,%d",&x,&y);//Koordinatları x ve y ye ata.
+  if(write(x,y,player_choose)!=-1){//Eğer kullanıcının işaretini belirtilen koordinatlara yazabiliyorsak->
+		if(gameover())break;
+		print_content(content);//Oyun tablosunu ekrana yazdır.
+	  check_thread();//Tehtidleri kontrol et.bkz. tehtid.
+	  if(thread.pattern_id!=-1) {//Eğer iki tane player sign bir düzendeyse
+			write(thread.x,thread.y,GAME_O);//tehtid struct'ına atanmış olan koordinatlara bilgisayarın işaretini yaz.
+			thread.pattern_id=-1;//Tehtidi sıfırla.
+			thread.x=-1;//Tehtidi sıfırla.
+			thread.y=-1;//Tehtidi sıfırla.
+		}
+	  else {//Ortada bir tehtid yoksa->
+			write_random();//Rastgele bir yere bilgisayarın işaretini yaz.
+		}
+	  print_content(content);//Oyun tablosunu ekrana yazdır.
 	}
-  else {
-		write_random();
-		printf("Random Yazıldı\n");
-	}
-  print_content(content);
+	else printf("Orası dolu...\n");//Eğer write() fonksiyonu -1 verirse, o koordinatların dolu olduğunu söyle.
 }
-  int* deneme=available_patterns();
   return 0;
 }
 
-
-int * available_patterns(){
+void setup(){
+	game.count_player=0;//Oyuncunun hamle sayısını sıfırla.
+	game.count_computer=0;//Bilgisayarın hamle sayısını sıfırla.
+	print_content(content);//Oyun tablosunu ekrana yazdır.
+}
+int * available_patterns(){//Kullanılabilir desenleri dizi olarak döndürür.
   int p_index,f_index,crdnt;
   int c_col,c_row;
   static int available_pattern_ids[8]={-1,-1,-1,-1,-1,-1,-1,-1};  //static koymayı unutma!!
@@ -91,7 +103,7 @@ int * available_patterns(){
   }
     return available_pattern_ids;
 }
-void check_thread(){
+void check_thread(){//Tehtidleri kontrol eder.
     int p_index,f_index;
     int thread_pattern_id=-1;
     int tp_counter=0;
@@ -110,7 +122,7 @@ void check_thread(){
       thread.pattern_id=thread_pattern_id;
       check_empty_fields();
 }
-void write_random(){
+void write_random(){//Rastgele koordinatlara bilgisayarın işaretini yazar.
   int *aps=available_patterns();
   int pid=rastgele(7);
   while(aps[pid]==-1)pid=rastgele(7);
@@ -126,11 +138,15 @@ void write_random(){
   }
   if(write(x,y,computer_choose)==-1)write_random();
 }
-int write (int x,int y,int sign){
-  if(is_available(x,y)) content[x][y]=sign;
+int write (int x,int y,int sign){//Verilen koordinatlara verilen işareti yazar.
+  if(is_available(x,y)){
+		content[x][y]=sign;
+		if(sign==player_choose)game.count_player++;
+		else if(sign==computer_choose)game.count_computer++;
+	}
   else return -1;
 }
-void print_content(int content[3][3]){
+void print_content(int content[3][3]){//Oyun tablosunu ekrana yazdırır.
   int i=0,j=0;
   for(i=0;i<3;i++){
     printf("-------------\n");
@@ -143,11 +159,11 @@ void print_content(int content[3][3]){
   }
   printf("-------------\n");
 }
-int is_available(int x,int y){
+int is_available(int x,int y){//Verilen koordinatlar kullanılabilir ise 1 döndürür.
   if(content[x][y]==-1)return 1;
   else return 0;
 }
-void check_empty_fields(){
+void check_empty_fields(){//Tehtid oluşturan desendeki boş alanı kontrol eder.
   int f_index=0,x,y;
   int pattern_id=thread.pattern_id;
   for(f_index=0;f_index<MAX_F;f_index++){
@@ -158,9 +174,9 @@ void check_empty_fields(){
       thread.y=x;
     }
   }
-	printf("Tehtid id:%d\tX:%d\tY:%d\n",pattern_id,thread.x,thread.y );
+	//printf("Tehtid id:%d\tX:%d\tY:%d\n",pattern_id,thread.x,thread.y );
 }
-int rastgele(int max){
+int rastgele(int max){//Verilen maximum değerde rastgele sayı üretir.
   srand(time(NULL));
   int sayi=0;
   while (sayi==0) {
@@ -168,10 +184,9 @@ int rastgele(int max){
   }
   sleep(1);
   srand(time(NULL));
-  //printf("random%d\n",sayi );
   return sayi;
 }
-int gameover(){
+int gameover(){//Oyunun bitip bitmediğini, bittiyse kimin kazandığını kontrol eder.
   int p_index,f_index;
   int pattern_counter=0;
   int x=0,y=0;
@@ -187,7 +202,8 @@ int gameover(){
 			if(content[y][x]==computer_choose) computer_counter++;
     	}
     if(player_counter==3){printf("Kazandınız\n");}
-		if(computer_counter==3){printf("Kaybettin\n");}
+		else if(computer_counter==3){printf("Kaybettin\n");}
+		else if(game.count_player==game.count_computer&&game.count_player>4)printf("Berabere\n");
     }
     if(pattern_counter==7){return 1;
 		printf("Game OVER\n");}
