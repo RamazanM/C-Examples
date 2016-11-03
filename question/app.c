@@ -95,7 +95,8 @@ int soru_cek(){         //rastgele soru çekip, soru nesnesini doldurur. hata va
     &soru.dogru);
     oyun.sorulanlar[oyun.sorulan_sayisi]=soru.soru_id;
     oyun.sorulan_sayisi++;
-        //printf("soru:%s\ncevap1:%s",soru.soru_metni,soru.cevaplar[0] );
+    printf("soru:%d\n",soru.soru_id );
+    printf("soru_c:%d,%d\n",oyun.sorulanlar[0],oyun.sorulanlar[1] );
     return 1;
   }
   else return 0;
