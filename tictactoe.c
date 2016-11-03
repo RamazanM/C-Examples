@@ -203,7 +203,7 @@ int gameover(){//Oyunun bitip bitmediğini, bittiyse kimin kazandığını kontr
     	}
     if(player_counter==3){printf("Kazandınız\n");}
 		else if(computer_counter==3){printf("Kaybettin\n");}
-		else if(game.count_player==game.count_computer&&game.count_player>4)printf("Berabere\n");
+		else if(game.count_computer>4||game.count_player>4)printf("Berabere\n");
     }
     if(pattern_counter==7){return 1;
 		printf("Game OVER\n");}
