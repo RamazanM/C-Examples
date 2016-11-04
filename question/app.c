@@ -177,7 +177,7 @@ int cevap_to_sayi(char c){//harf olarak gelen cevabı sayısal değere çevirir.
   else return -1;
 }
 
-void gameover(){
+void gameover(){          //oyun bittiğinde puanı yazdırır.
   printf("Yanlış cevap verdiniz oyun bitti.\n");
   printf("Puanınız:%d\n",oyun.dogru_sayisi);
 }
