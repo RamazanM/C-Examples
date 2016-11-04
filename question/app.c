@@ -43,7 +43,7 @@ int main(){
   gameover();
 }
 
-void game(){          //oyunun ana mekanizmasını oluşturur.
+void game(){              //oyunun ana mekanizmasını oluşturur.
   char cevap=-1;
   if(soru_cek()){
     printf("%d)%s\nA)%s\tB)%s\tC)%s\tD)%s\n",
