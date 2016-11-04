@@ -1,6 +1,5 @@
 /*
 Sorulan soru idsini sorulanlara eklemeyi unutma.
-
 */
 #include<stdio.h>
 #include<stdlib.h>
