@@ -153,7 +153,6 @@ int rastgele(int max){    //rastgele sayı üretir.
     sayi=rand()%max;
   }
   sleep(1);
-  srand(time(NULL));
   return sayi;
 }
 
