@@ -60,3 +60,15 @@ void bos_ikizkenar(){
 			printf("\n");
 		}
 	}
+
+void kelebek(){
+	int i,j;
+	for(i=0;i<=15;i++){
+		for(j=0;j<7;j++){
+			if(i==0 || i== 15) printf("*");
+			else if(i<7){
+				
+				}
+			}
+		}
+	}
