@@ -3,6 +3,7 @@ void dik_ucgen();
 void bos_dik_ucgen();
 void bos_ikizkenar();
 void ikizkenar();
+void kelebek ();
 
 int main (){
 	dik_ucgen();
@@ -63,12 +64,13 @@ void bos_ikizkenar(){
 
 void kelebek(){
 	int i,j;
-	for(i=0;i<=15;i++){
+	for(i=0;i<=30;i++){
 		for(j=0;j<7;j++){
 			if(i==0 || i== 15) printf("*");
 			else if(i<7){
-				
+				if (j=
 				}
 			}
 		}
 	}
+	
