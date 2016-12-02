@@ -13,6 +13,8 @@ int main (){
 	bos_ikizkenar();
 	printf("\n");
 	ikizkenar();
+	printf("\n");
+	kelebek ();
 }
 
 void dik_ucgen(){
@@ -68,9 +70,10 @@ void kelebek(){
 		for(j=0;j<7;j++){
 			if(i==0 || i== 15) printf("*");
 			else if(i<7){
-				if (j=
+				if (i==3+j || i==3-j) printf ("*");
 				}
 			}
+			printf ("\n");
 		}
 	}
 	
