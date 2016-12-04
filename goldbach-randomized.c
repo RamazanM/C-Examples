@@ -11,7 +11,11 @@ int main(){
   int row_sayac=0;
   int i,j;
   int bir=1,iki=1;
+<<<<<<< HEAD
    for(i=1500;i<10000000;){//çift sayıları saydır.
+=======
+   for(i=2220;i<10000000;){//çift sayıları saydır.
+>>>>>>> fa49fee31f20922c0e834412c138082afcfc4775
 
      while((bir+iki)!=i){
        if(bir+iki<i){
@@ -22,7 +26,7 @@ int main(){
          if(bir+iki==i){
            printf("Bulundu:%d+%d=%d",bir,iki,i );
 
-           if(row_sayac<6){printf("\t");row_sayac++;} else {printf("\n"); row_sayac=0;}
+           if(row_sayac<1){printf("\t");row_sayac++;} else {printf("\n"); row_sayac=0;}
            i+=2;
          }
        }
@@ -32,7 +36,7 @@ int main(){
         if(bir+iki==i){
           printf("Bulundu:%d+%d=%d",bir,iki,i );
 
-          if(row_sayac<6){printf("\t");row_sayac++;} else {printf("\n"); row_sayac=0;}
+          if(row_sayac<1){printf("\t");row_sayac++;} else {printf("\n"); row_sayac=0;}
           i+=2;
         }
        }
