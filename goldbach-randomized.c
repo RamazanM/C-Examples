@@ -11,7 +11,7 @@ int main(){
   int row_sayac=0;
   int i,j;
   int bir=1,iki=1;
-   for(i=4;i<10000000;){//çift sayıları saydır.
+   for(i=1500;i<10000000;){//çift sayıları saydır.
 
      while((bir+iki)!=i){
        if(bir+iki<i){
