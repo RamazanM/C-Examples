@@ -1,5 +1,6 @@
 #include "graph.c"
 #include <time.h>
+
 struct koordinat
 {
   int x;
@@ -10,8 +11,7 @@ typedef struct koordinat pozisyon;
 
 main()
 {
-                                                                            int gd=DETECT,gm;initgraph(&gd,&gm,""); /* initialization of graphic mode */
-                                                                            setfillstyle(SOLID_FILL, getmaxcolor());
+  int gd=DETECT,gm;initgraph(&gd,&gm,""); /* initialization of graphic mode */
   srand(time(NULL));
   int i;
   pozisyon gplot[10];
@@ -26,5 +26,5 @@ main()
   {
       plot( gplot[i].x , gplot[i].y );
   }
-                                                                                    sleep(10);
+  sleep(10);
 }
