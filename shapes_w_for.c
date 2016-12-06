@@ -24,7 +24,7 @@ void dik_ucgen(){
 			printf ("* ");
 		}
 		printf ("\n");
-	}	
+	}
 }
 
 void bos_dik_ucgen(){
@@ -66,14 +66,19 @@ void bos_ikizkenar(){
 
 void kelebek(){
 	int i,j;
-	for(i=0;i<=30;i++){
-		for(j=0;j<7;j++){
-			if(i==0 || i== 15) printf("*");
-			else if(i<7){
-				if (i==3+j || i==3-j) printf ("*");
-				}
+	for(i=0;i<=11;i++){
+		for(j=0;j<=10;j++){
+			if(i==0 || i==11) printf("*");
+			else if(i<6){
+				if(j<=i-1 || j>=11-i) printf(" " );
+				else printf("*");
 			}
-			printf ("\n");
+			else if(i>=6){
+				if(j>=i || j<=10-i) printf(" " );
+				else printf("*");
+			}
+
 		}
+		printf ("\n");
 	}
-	
+}
