@@ -10,6 +10,7 @@ Klasik adam asmaca oyununun konsol versiyonu.
 char *randomSatir(char *dosyaAdi);
 //Prototip tanımlama gerekli!!!
 int main(int argc, char const *argv[]) {
+  srand(time(NULL));
   char *locale;
   locale = setlocale(LC_ALL, "");
 
