@@ -16,11 +16,11 @@ Ne aşamadayım:
 
 --Ramazan M	/	8.12.16
 */
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <termios.h>
 #include <unistd.h>
-#include<time.h>
+#include <time.h>
 
 #define SPADE   "\xE2\x99\xA0"
 #define CLUB    "\xE2\x99\xA3"
