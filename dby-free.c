@@ -2,6 +2,7 @@
 Dinamik bellek yönetimi ile ilgili yardımcı kodları içerir.
 Free örneği.
 Amaç:Free komutu verildiğinde pointer'ın boşa çıktığını göstermek.
+Ramazan Mutlu
 */
 #include <stdio.h>
 #include <stdlib.h> //Dinamik bellek yönetimi kodlarını yazabilmemiz için stdlib kütüphanesi gereklidir.

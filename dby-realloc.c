@@ -2,6 +2,7 @@
 Dinamik bellek yönetimi ile ilgili yardımcı kodları içerir.
 Realloc örneği.
 Amaç:Veri girildikçe büyüyen bir bellek alanı ayırmak.
+Ramazan Mutlu
 */
 
 #include <stdio.h>

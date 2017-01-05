@@ -1,5 +1,9 @@
-//Dinamik bellek yönetimi ile ilgili yardımcı kodları içerir.
-//Calloc ve Malloc örneği...
+/*
+Dinamik bellek yönetimi ile ilgili yardımcı kodları içerir.
+Realloc örneği.
+Amaç:Dinamik bellek yönetiminin nasıl kullanıldığını açıklamak.
+Ramazan Mutlu
+*/
 #include <stdio.h>
 #include <stdlib.h> //Dinamik bellek yönetimi kodlarını yazabilmemiz için stdlib kütüphanesi gereklidir.
 #include <time.h>
