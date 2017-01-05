@@ -1,7 +1,14 @@
 #include<stdio.h>
+
 int main(){
-	char isim[10];
-	printf("Bir yazı yazınız(10)\n");
-	scanf("%s",&isim);
-	printf("%s",isim);	
+
+	int sayi;
+	printf("sayiyi giriniz:");
+	scanf("%d",&sayi);
+	int b=100;
+	
+	for(b; b>=50 ; b--){
+		printf("%d \n",b);
 	}
+
+}
