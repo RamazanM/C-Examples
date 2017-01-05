@@ -1,5 +1,0 @@
-/home/ramazan/C-Examples/plotting/app.c: In function ‘main’:
-/home/ramazan/C-Examples/plotting/app.c:14:90: error: ‘SOLID_FILL’ undeclared (first use in this function)
-                                                                             setfillstyle(SOLID_FILL, getmaxcolor());
-                                                                                          ^
-/home/ramazan/C-Examples/plotting/app.c:14:90: note: each undeclared identifier is reported only once for each function it appears in
