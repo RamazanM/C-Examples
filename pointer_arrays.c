@@ -11,7 +11,7 @@ int main(){
 	int * carpim = diziCarp(&ilk,&iki,4); //carpim ismindeki pointer'a diziCarp fonksiyonundan gelen adresi atıyoruz
 	printArray(carpim,4);	//printArray fonksiyonuna başlangıç pointerini ve boyutunu veriyoruz.
 }
-	
+
 int diziOrtalamasi(int * ilk, int * son){	//dizinin ortalamasını hesaplayıp sayı olarak döndüren fonksiyon
 	int *i;
 	int sum=0;
@@ -26,9 +26,9 @@ int * diziCarp(int * ilk, int * iki, int size){//verilen iki diziyi çarpan fonk
 	int i;
 	for(i=0;i<size;i++)
 		*(sonuc+i)=*(ilk+i) * *(iki+i);	//sırayla değerleri çarpıp sonuc'tan i sonraki elemana ata
-	return sonuc;	
+	return sonuc;
 	}
-	
+
  void printArray(int * ptr, int size){
  	int i=0;
  	for(i=0;i<size;i++)

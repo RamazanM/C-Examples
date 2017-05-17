@@ -5,7 +5,7 @@ Sorulan soru idsini sorulanlara eklemeyi unutma.
 #include<stdlib.h>
 #include<string.h>
 #include<time.h>
-#include <termios.h>
+//#include <termios.h>
 #include <unistd.h>
 #include <locale.h>
 

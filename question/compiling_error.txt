@@ -1,0 +1,27 @@
+C:\Users\Hp\Documents\Projects\C-Examples\question\app.c: In function 'soru_cek':
+C:\Users\Hp\Documents\Projects\C-Examples\question\app.c:98:17: warning: implicit declaration of function 'getline' [-Wimplicit-function-declaration]
+     while ((oku=getline(&line, &len,dosya))!= -1) {
+                 ^
+C:\Users\Hp\Documents\Projects\C-Examples\question\app.c: In function 'getch':
+C:\Users\Hp\Documents\Projects\C-Examples\question\app.c:160:20: error: storage size of 'oldattr' isn't known
+     struct termios oldattr, newattr;
+                    ^
+C:\Users\Hp\Documents\Projects\C-Examples\question\app.c:160:29: error: storage size of 'newattr' isn't known
+     struct termios oldattr, newattr;
+                             ^
+C:\Users\Hp\Documents\Projects\C-Examples\question\app.c:162:5: warning: implicit declaration of function 'tcgetattr' [-Wimplicit-function-declaration]
+     tcgetattr( STDIN_FILENO, &oldattr );
+     ^
+C:\Users\Hp\Documents\Projects\C-Examples\question\app.c:164:27: error: 'ICANON' undeclared (first use in this function)
+     newattr.c_lflag &= ~( ICANON | ECHO );
+                           ^
+C:\Users\Hp\Documents\Projects\C-Examples\question\app.c:164:27: note: each undeclared identifier is reported only once for each function it appears in
+C:\Users\Hp\Documents\Projects\C-Examples\question\app.c:164:36: error: 'ECHO' undeclared (first use in this function)
+     newattr.c_lflag &= ~( ICANON | ECHO );
+                                    ^
+C:\Users\Hp\Documents\Projects\C-Examples\question\app.c:165:5: warning: implicit declaration of function 'tcsetattr' [-Wimplicit-function-declaration]
+     tcsetattr( STDIN_FILENO, TCSANOW, &newattr );
+     ^
+C:\Users\Hp\Documents\Projects\C-Examples\question\app.c:165:30: error: 'TCSANOW' undeclared (first use in this function)
+     tcsetattr( STDIN_FILENO, TCSANOW, &newattr );
+                              ^
