@@ -15,7 +15,7 @@ int is_valid(int sayi){ //Rastgele üretilen numaranın istenilen şartlara uyup
   );
 }
 
-void check_match(int sayi,int tahmin){//Bilgisayarın belirlediği rakamlarla kullanıcının girdiğini kontrol eder sonucu sözel olarak döndürür.
+void check_match(int sayi,int tahmin,int* arti,int* eksi){//Bilgisayarın belirlediği rakamlarla kullanıcının girdiğini kontrol eder sonucu sözel olarak döndürür.
   char sayi_c[4];
   char tahmin_c[4];
   sprintf(sayi_c,"%d",sayi);
@@ -24,8 +24,14 @@ void check_match(int sayi,int tahmin){//Bilgisayarın belirlediği rakamlarla ku
   for(i=0;i<4;i++){
     for(j=0;j<4;j++){
       if(sayi_c[i]==tahmin_c[j]){
-        if(i==j)dogru_sayac++;
-        else yanlis_sayac++;
+        if(i==j){
+          dogru_sayac++;
+          (*arti)=(*arti)+1;
+        }
+        else{
+          yanlis_sayac++;
+          (*eksi)=(*eksi)-1;
+        }
       }
     }
   }
@@ -33,17 +39,35 @@ void check_match(int sayi,int tahmin){//Bilgisayarın belirlediği rakamlarla ku
 }
 
 
+float puan(float arti,float eksi,float hak){
+  return 10*arti+5*eksi+(1000/hak)-( (arti*eksi)/(arti+eksi) );
+}
+
+float high_score(){
+return 0.0;
+}
+
+void save_score(float puan){
+  FILE *dosya;
+  dosya=fopen("high_score.txt","a+");
+  char * isim;
+  printf("%s",isim);
+  fwrite()
+}
 
 int main() {
   srand(time(NULL));
   int sayi=-1,tahmin=-1;
+  int arti=0,eksi=0,hak=0;
   while(!is_valid(sayi))sayi=rand()%10000;
   printf("4 haneli sayı belirlenmiştir.\n");
   while(sayi!=tahmin){
     printf("Tahmininizi Yazınız:");
     scanf("%d",&tahmin);
-    check_match(sayi,tahmin);
+    hak++;
+    check_match(sayi,tahmin,&arti,&eksi);
   }
-  printf("Tebrikler...\n");
+  float anlik_puan=puan( (float) arti,(float) eksi,(float) hak);
+  if(anlik_puan>high_score())save_score(anlik_puan);
   return 0;
 }
