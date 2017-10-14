@@ -10,7 +10,7 @@ typedef struct Score{
   float puan;
 }score;
 
-int is_valid(int sayi){ //Rastgele üretilen numaranın istenilen şartlara uyup uymadığını kontrol eden fonksiyon.
+int is_valid(int sayi){ //Rastgele üretilen numaranin istenilen sartlara uyup uymadiğini kontrol eden fonksiyon.
   char sayi_c[4];
   sprintf(sayi_c,"%d",sayi);
   return(
@@ -23,7 +23,7 @@ int is_valid(int sayi){ //Rastgele üretilen numaranın istenilen şartlara uyup
   );
 }
 
-void check_match(int sayi,int tahmin,int* arti,int* eksi){//Bilgisayarın belirlediği rakamlarla kullanıcının girdiğini kontrol eder sonucu sözel olarak döndürür.
+void check_match(int sayi,int tahmin,int* arti,int* eksi){//Bilgisayarin belirlediği rakamlarla kullanicinin girdiğini kontrol eder sonucu sözel olarak döndürür.
   char sayi_c[4];
   char tahmin_c[4];
   sprintf(sayi_c,"%d",sayi);
@@ -43,7 +43,7 @@ void check_match(int sayi,int tahmin,int* arti,int* eksi){//Bilgisayarın belirl
       }
     }
   }
-  printf("Girilen rakamların %d tanesi var, %d tanesi dogru yerde, %d tanesi yanlis yerde.\n",dogru_sayac+yanlis_sayac,dogru_sayac,yanlis_sayac );
+  printf("Girilen rakamlarin %d tanesi var, %d tanesi dogru yerde, %d tanesi yanlis yerde.\n",dogru_sayac+yanlis_sayac,dogru_sayac,yanlis_sayac );
 }
 
 
@@ -78,7 +78,7 @@ void save_score(float puan,int position){
   score *temp=top10();
   FILE *dosya;
   dosya=fopen("high_score.txt","w+");
-  printf("İsminizi giriniz:");
+  printf("Isminizi giriniz:");
   char isim[20];
   scanf("%s",isim);
   score player_puan;
@@ -110,10 +110,10 @@ int main() {
 
   while(!is_valid(sayi))  sayi=rand()%10000;
 
-  printf("4 haneli sayı belirlenmiştir.\n%d",sayi);
+  printf("4 haneli sayi belirlenmistir.\n%d",sayi);
 
   while(sayi!=tahmin && hak<10){
-    printf("Tahmininizi Yazınız:");
+    printf("Tahmininizi Yaziniz:");
     scanf("%d",&tahmin);
     hak++;
     check_match(sayi,tahmin,&arti,&eksi);
