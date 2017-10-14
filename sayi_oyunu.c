@@ -1,6 +1,14 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+#include <string.h>
+
+void save_score(float puan,int position);
+
+typedef struct Score{
+  char isim[20];
+  float puan;
+}score;
 
 int is_valid(int sayi){ //Rastgele üretilen numaranın istenilen şartlara uyup uymadığını kontrol eden fonksiyon.
   char sayi_c[4];
@@ -43,31 +51,75 @@ float puan(float arti,float eksi,float hak){
   return 10*arti+5*eksi+(1000/hak)-( (arti*eksi)/(arti+eksi) );
 }
 
-float high_score(){
-return 0.0;
-}
-
-void save_score(float puan){
+score* top10(){
   FILE *dosya;
-  dosya=fopen("high_score.txt","a+");
-  char * isim;
-  printf("%s",isim);
-  fwrite()
+  dosya=fopen("high_score.txt","rb");
+  score *puan=(score*)malloc(10*sizeof(score));
+  for(int i=0;i<10;i++){
+    fread((puan+i),sizeof(score),1,dosya);
+  }
+  fclose(dosya);
+  return puan;
 }
 
+void check_high_score(float puan){
+  score *top=top10();
+  for(int i=0;i<10;i++){
+    if( puan > (top+i)->puan ){
+      printf("Tebrikler ilk 10'a girdiniz.\n");
+        save_score(puan,i);
+        break;
+    }
+  }
+}
+
+void save_score(float puan,int position){
+  score *enIyiler=top10();
+  score *temp=top10();
+  FILE *dosya;
+  dosya=fopen("high_score.txt","w+");
+  printf("İsminizi giriniz:");
+  char isim[20];
+  scanf("%s",isim);
+  score player_puan;
+  strcpy(player_puan.isim,isim);
+  printf("isminiz:%s\n",player_puan.isim);
+  player_puan.puan=puan;
+  *(enIyiler+position)=player_puan;
+
+  for(int i=position+1;i<10;i++){
+    *(enIyiler+i)=*(temp+i-1);
+  }
+
+  for(int i=0;i<10;i++){
+    fwrite((enIyiler+i),sizeof(player_puan),1,dosya);
+  }
+
+  fclose(dosya);
+}
+
+void print_top10(){
+  score *top=top10();
+  for(int i=0;i<10;i++) printf("%s\t%f\n",(top+i)->isim,(top+i)->puan );
+}
 int main() {
   srand(time(NULL));
+  print_top10();
   int sayi=-1,tahmin=-1;
   int arti=0,eksi=0,hak=0;
-  while(!is_valid(sayi))sayi=rand()%10000;
-  printf("4 haneli sayı belirlenmiştir.\n");
-  while(sayi!=tahmin){
+
+  while(!is_valid(sayi))  sayi=rand()%10000;
+
+  printf("4 haneli sayı belirlenmiştir.\n%d",sayi);
+
+  while(sayi!=tahmin && hak<10){
     printf("Tahmininizi Yazınız:");
     scanf("%d",&tahmin);
     hak++;
     check_match(sayi,tahmin,&arti,&eksi);
   }
   float anlik_puan=puan( (float) arti,(float) eksi,(float) hak);
-  if(anlik_puan>high_score())save_score(anlik_puan);
+  printf("Puaniniz:%f\n",anlik_puan );
+  check_high_score(anlik_puan);
   return 0;
 }
