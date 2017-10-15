@@ -54,9 +54,10 @@ score* top10(){ //ilk 10 kişiyi skor dizisi olarak döndürür.
   FILE *dosya;
   dosya=fopen("high_score.txt","rb");
   score *puan=(score*)malloc(10*sizeof(score));
+
   for(int i=0;i<10;i++){
     fread((puan+i),sizeof(score),1,dosya);
-  }
+}
   fclose(dosya);
   return puan;
 }
