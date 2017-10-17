@@ -111,24 +111,30 @@ int main(int argc, char const *argv[]) {
   srand(time(NULL));
 
   print_top10(); //İlk 10 a girenler listeleniyor.
+  while(1){
+    int sayi=-1,tahmin=-1;
+    int arti=0,eksi=0,hak=0;
 
-  int sayi=-1,tahmin=-1;
-  int arti=0,eksi=0,hak=0;
+    while(!is_valid(sayi))  sayi=1000+rand()%9000; //Geçerli bir random sayı belirleniyor.
 
-  while(!is_valid(sayi))  sayi=1000+rand()%9000; //Geçerli bir random sayı belirleniyor.
 
-  if(argc>1&& strcmp(argv[1],"-d") ) printf("4 haneli sayi belirlenmistir.\n%d\n",sayi); //Debug satırı.
+    printf("4 haneli sayi belirlenmistir.\n%d\n",sayi); //Debug satırı.
 
-  while(sayi!=tahmin && hak<10){
-    printf("\nKalan Hakkınız:%d\nTahmininizi Yaziniz:",10-hak);
-    scanf("%d",&tahmin);
-    hak++;
-    check_match(sayi,tahmin,&arti,&eksi);
+    while(sayi!=tahmin && hak<10){
+      printf("\nKalan Hakkınız:%d\nTahmininizi Yaziniz:",10-hak);
+      scanf("%d",&tahmin);
+      hak++;
+      check_match(sayi,tahmin,&arti,&eksi);
+    }
+    float anlik_puan=puan( (float) arti,(float) eksi,(float) hak);
+    printf("\nPuaniniz:%f\n",anlik_puan );
+    check_high_score(anlik_puan); //Top 10'a girip girmediği kontrol edilir girdiyse isim istenip listeye eklenir.
+    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    print_top10();
+    printf("Yeniden Oyna(E/h)\n");
+    char secim;
+    scanf("%c",&secim);
+    if(secim=='h' || secim=='H') break;
   }
-  float anlik_puan=puan( (float) arti,(float) eksi,(float) hak);
-  printf("\nPuaniniz:%f\n",anlik_puan );
-  check_high_score(anlik_puan); //Top 10'a girip girmediği kontrol edilir girdiyse isim istenip listeye eklenir.
-  printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-  print_top10();
   return 0;
 }
