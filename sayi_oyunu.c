@@ -71,6 +71,7 @@ void check_high_score(float puan){ //Oyuncunun top10'a girip giremediği kontrol
         break;
     }
   }
+  printf("Maalesef ilk 10'a giremediniz\n");
 }
 
 void save_score(float puan,int position){//check_high_score'dan gelen sıra bilgisine göre oyuncuyu gerekli sıraya yerleştirir.
@@ -110,31 +111,25 @@ void print_top10(){//Zirvedekiler listesini ekrana bastırır.
 int main(int argc, char const *argv[]) {
   srand(time(NULL));
 
-  print_top10(); //İlk 10 a girenler listeleniyor.
-  while(1){
-    int sayi=-1,tahmin=-1;
-    int arti=0,eksi=0,hak=0;
+  int sayi=-1,tahmin=-1;
+  int arti=0,eksi=0,hak=0;
 
-    while(!is_valid(sayi))  sayi=1000+rand()%9000; //Geçerli bir random sayı belirleniyor.
+  while(!is_valid(sayi))  sayi=1000+rand()%9000; //Geçerli bir random sayı belirleniyor.
 
+  printf("4 haneli sayi belirlenmistir.\nSayinin her rakami birbirinden farklidir.\nBilmek için 10 hakkiniz vardir.\n\n"); //Debug satırı.
 
-    printf("4 haneli sayi belirlenmistir.\n%d\n",sayi); //Debug satırı.
-
-    while(sayi!=tahmin && hak<10){
-      printf("\nKalan Hakkınız:%d\nTahmininizi Yaziniz:",10-hak);
-      scanf("%d",&tahmin);
-      hak++;
-      check_match(sayi,tahmin,&arti,&eksi);
-    }
-    float anlik_puan=puan( (float) arti,(float) eksi,(float) hak);
-    printf("\nPuaniniz:%f\n",anlik_puan );
-    check_high_score(anlik_puan); //Top 10'a girip girmediği kontrol edilir girdiyse isim istenip listeye eklenir.
-    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-    print_top10();
-    printf("Yeniden Oyna(E/h)\n");
-    char secim;
-    scanf("%c",&secim);
-    if(secim=='h' || secim=='H') break;
+  while(sayi!=tahmin && hak<10){
+    printf("\nKalan Hakkınız:%d\nTahmininizi Yaziniz:",10-hak);
+    scanf("%d",&tahmin);
+    hak++;
+    check_match(sayi,tahmin,&arti,&eksi);
   }
+  float anlik_puan=puan( (float) arti,(float) eksi,(float) hak);
+  printf("\nSordugumuz sayi:%d idi\nPuaniniz:%f\n",sayi,anlik_puan );
+
+  check_high_score(anlik_puan); //Top 10'a girip girmediği kontrol edilir girdiyse isim istenip listeye eklenir.
+
+  printf("\n\n\n\n");
+  print_top10(); //İlk 10 a girenler listeleniyor.
   return 0;
 }

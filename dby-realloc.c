@@ -21,9 +21,9 @@ int main(){
         notlar =(int*) realloc(notlar,i*sizeof(int)); //Diziyi i eleman alacak şekilde genişlettik.
         printf("%d\n",*(notlar+i-2) );
         toplam+=*(notlar+i-2);  //toplam değişkenine girilen sayıyı ekledik.
-        
+
       }
-      else{  
+      else{
       	break;
       }  //girilen sayı -1 ise döngüden çık.
     }
