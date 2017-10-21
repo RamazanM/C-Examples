@@ -38,7 +38,7 @@ void check_match(int sayi,int tahmin,int* arti,int* eksi){//Bilgisayarin belirle
         }
         else{
           yanlis_sayac++;
-          (*eksi)=(*eksi)-1;
+          (*eksi)=(*eksi)+1;
         }
       }
     }
@@ -57,7 +57,7 @@ score* top10(){ //ilk 10 kişiyi skor dizisi olarak döndürür.
 
   for(int i=0;i<10;i++){
     fread((puan+i),sizeof(score),1,dosya);
-}
+  }
   fclose(dosya);
   return puan;
 }
@@ -84,7 +84,7 @@ void save_score(float puan,int position){//check_high_score'dan gelen sıra bilg
   scanf("%s",isim);
   score player_puan;
   strcpy(player_puan.isim,isim);
-  player_puan.puan=puan;
+  player_puan.puan=puan; //Şu anki oyuncu için score nesnemiz oluşturuldu.
   *(enIyiler+position)=player_puan;
 
   for(int i=position+1;i<10;i++){
