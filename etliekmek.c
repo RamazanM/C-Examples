@@ -76,6 +76,7 @@ char random_malzeme(){
 		return ekmek.bosluk;
 		break;
 		}
+ return ' ';
 	}
 
 int main(){
