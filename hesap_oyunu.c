@@ -10,6 +10,7 @@ Ramazan Mutlu
 #include <time.h>
 
 int main() {
+	srand(time(NULL));
   int devam=1,dogru=0;
   time_t start,end;
   double fark;
@@ -74,11 +75,11 @@ int main() {
 }
 
 int rastgele(int max){
-  srand(time(NULL));
+  
   int sayi=0;
   while (sayi==0) {
     sayi=rand()%max;
   }
-  srand(time(NULL));
+  
   return sayi;
 }
