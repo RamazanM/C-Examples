@@ -38,7 +38,7 @@ void check_match(int sayi,int tahmin,int* arti,int* eksi){//Bilgisayarin belirle
         }
         else{
           yanlis_sayac++;
-          (*eksi)=(*eksi)-1;
+          (*eksi)=(*eksi)+1;
         }
       }
     }
@@ -57,7 +57,7 @@ score* top10(){ //ilk 10 kişiyi skor dizisi olarak döndürür.
 
   for(int i=0;i<10;i++){
     fread((puan+i),sizeof(score),1,dosya);
-}
+  }
   fclose(dosya);
   return puan;
 }
@@ -71,6 +71,7 @@ void check_high_score(float puan){ //Oyuncunun top10'a girip giremediği kontrol
         break;
     }
   }
+  printf("Maalesef ilk 10'a giremediniz\n");
 }
 
 void save_score(float puan,int position){//check_high_score'dan gelen sıra bilgisine göre oyuncuyu gerekli sıraya yerleştirir.
@@ -83,7 +84,7 @@ void save_score(float puan,int position){//check_high_score'dan gelen sıra bilg
   scanf("%s",isim);
   score player_puan;
   strcpy(player_puan.isim,isim);
-  player_puan.puan=puan;
+  player_puan.puan=puan; //Şu anki oyuncu için score nesnemiz oluşturuldu.
   *(enIyiler+position)=player_puan;
 
   for(int i=position+1;i<10;i++){
@@ -110,14 +111,12 @@ void print_top10(){//Zirvedekiler listesini ekrana bastırır.
 int main(int argc, char const *argv[]) {
   srand(time(NULL));
 
-  print_top10(); //İlk 10 a girenler listeleniyor.
-
   int sayi=-1,tahmin=-1;
   int arti=0,eksi=0,hak=0;
 
   while(!is_valid(sayi))  sayi=1000+rand()%9000; //Geçerli bir random sayı belirleniyor.
 
-  if(argc>1&& strcmp(argv[1],"-d") ) printf("4 haneli sayi belirlenmistir.\n%d\n",sayi); //Debug satırı.
+  printf("4 haneli sayi belirlenmistir.\nSayinin her rakami birbirinden farklidir.\nBilmek için 10 hakkiniz vardir.\n\n"); //Debug satırı.
 
   while(sayi!=tahmin && hak<10){
     printf("\nKalan Hakkınız:%d\nTahmininizi Yaziniz:",10-hak);
@@ -126,9 +125,11 @@ int main(int argc, char const *argv[]) {
     check_match(sayi,tahmin,&arti,&eksi);
   }
   float anlik_puan=puan( (float) arti,(float) eksi,(float) hak);
-  printf("\nPuaniniz:%f\n",anlik_puan );
+  printf("\nSordugumuz sayi:%d idi\nPuaniniz:%f\n",sayi,anlik_puan );
+
   check_high_score(anlik_puan); //Top 10'a girip girmediği kontrol edilir girdiyse isim istenip listeye eklenir.
-  printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-  print_top10();
+
+  printf("\n\n\n\n");
+  print_top10(); //İlk 10 a girenler listeleniyor.
   return 0;
 }
